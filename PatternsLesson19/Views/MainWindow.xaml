@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Margin="5" Grid.Column="0" Grid.Row="0"></Button>
+            <Button Margin="5" Grid.Column="0" Grid.Row="1"></Button>
+            <Button Margin="5" Grid.Column="0" Grid.Row="2"></Button>
+            <Button Margin="5" Grid.Column="0" Grid.Row="3"></Button>
+        </Grid>
+        <ListView Grid.Row="0" Grid.Column="1" Margin="5"></ListView>
     </Grid>
 </Window>
