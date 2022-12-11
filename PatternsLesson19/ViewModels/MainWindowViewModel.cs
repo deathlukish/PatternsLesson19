@@ -11,19 +11,34 @@ namespace PatternsLesson19.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        List<IAnimalClass> _animalClasses = new();
+        public List<IAnimalClass> AnimalClasses
+        {
+            get => _animalClasses;
+            set => Set(ref _animalClasses, value);
+        }
         private Array _Classes;
         public Array Classes { get; set; }
         public EnumAnimal Class { get; set; }
-        public ICommand AddMammal { get; }
-        private void OnAddMammal(object p)
+        public ICommand AddAnimal { get; }
+        private void OnAddAnimal(object p)
         {
-           
+            _animalClasses.Add(AnimalFactory.GetAnimal(Class, "", "", ""));
         }
-        private bool CanAddMammal(object p) => true;
+        private bool CanAddAnimal(object p)
+
+        {
+
+            if (Class == null) return false;
+            else
+            {
+                return true;
+            }
+        }
         public MainWindowViewModel()
         {
             Classes = Enum.GetValues(typeof(EnumAnimal));
-            AddMammal = new RelayCommand(OnAddMammal, CanAddMammal);
+            AddAnimal = new RelayCommand(OnAddAnimal, CanAddAnimal);
         }
 
     }
