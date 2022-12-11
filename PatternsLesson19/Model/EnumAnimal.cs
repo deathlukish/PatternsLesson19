@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal interface IAnimalClass
+    internal enum EnumAnimal
     {
-        string Name { get; set; }
-        string Description { get; set; }
-        string Location { get; set; }
+        Amphibian = 1,
+        Bird = 2,
+        Mammaml = 3
     }
 }

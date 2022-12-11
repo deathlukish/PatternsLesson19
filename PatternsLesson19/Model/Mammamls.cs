@@ -8,6 +8,14 @@ namespace PatternsLesson19.Model
 {
     internal class Mammamls : IAnimalClass
     {
-
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+        public Mammamls(string name, string desc, string loation)
+        {
+            Name = name;
+            Description = desc;
+            Location = loation;
+        }
     }
 }
