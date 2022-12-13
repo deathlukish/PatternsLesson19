@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal interface IBaseSave
+    internal class SaveJson : IBaseSave
     {
-        public void Save(IRepository repository);
+        public void Save(IRepository repository)
+        {
+            repository.GetAllAnimal();
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PatternsLesson19"
         xmlns:vm ="clr-namespace:PatternsLesson19.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -26,7 +26,18 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Margin="5" Grid.Column="0" Grid.Row="0" Command="{Binding AddMammal}"></Button>
+            <GroupBox Margin="5" Grid.Column="0" Grid.Row="0" Header="Сохранить базу">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="5" Grid.Row="0" Text="Выберите тип"></TextBlock>
+                    <ComboBox Margin="5" Grid.Row="1" ItemsSource="{Binding TypeFiles}" SelectedItem="{Binding TypeFile}"></ComboBox>
+                    <Button Margin="5" Grid.Row="2" Content="Сохранить" Command="{Binding SaveAll}"></Button>
+                </Grid>
+            </GroupBox>
             
             <GroupBox Margin="5" Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" Header="Добавить животное">
                 <Grid>

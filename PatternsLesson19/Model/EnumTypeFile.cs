@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal interface IBaseSave
+    internal enum EnumTypeFile
     {
-        public void Save(IRepository repository);
+        Xml = 0,
+        Json = 1
     }
 }

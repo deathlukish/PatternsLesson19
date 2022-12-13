@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal interface IBaseSave
+    internal interface IRepository
     {
-        public void Save(IRepository repository);
+        IEnumerable<IAnimalClass> GetAllAnimal();
     }
 }
