@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal class Birds : IAnimalClass
+    public class Birds : IAnimalClass
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,6 +16,10 @@ namespace PatternsLesson19.Model
             Name = name;
             Description = desc;
             Location = loation;
+        }
+        public override string ToString()
+        {
+            return $"{Name} {Description} {Location}";
         }
     }
 }

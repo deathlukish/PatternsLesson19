@@ -7,9 +7,13 @@
         public string Location { get; set; }
         public NullAnimal()
         {
-            this.Name = "Unknow";
-            this.Description = "Unknow";
-            this.Location = "Unknow";
+            Name = "Unknow";
+            Description = "Unknow";
+            Location = "Unknow";
+        }
+        public override string ToString()
+        {
+            return $"{Name} {Description} {Location}";
         }
     }
 }

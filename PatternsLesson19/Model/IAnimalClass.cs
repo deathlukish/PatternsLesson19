@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal interface IAnimalClass
+    public interface IAnimalClass
     {
         string Name { get; set; }
         string Description { get; set; }

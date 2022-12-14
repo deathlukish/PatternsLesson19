@@ -1,10 +1,7 @@
 ﻿using PatternsLesson19.Commands;
 using PatternsLesson19.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace PatternsLesson19.ViewModels
@@ -12,17 +9,35 @@ namespace PatternsLesson19.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         Repository repository;
-        List<IAnimalClass> _animalClasses = new();
-        public List<IAnimalClass> AnimalClasses
+        ObservableCollection<IAnimalClass> _allAnimal = new();
+        string _name;
+        string _description;
+        string _location;
+        public string Name
         {
-            get => _animalClasses;
-            set => Set(ref _animalClasses, value);
+            get => _name;
+            set => Set(ref _name, value);
+        }
+        public string Description
+        {
+            get { return _description; }
+            set => Set(ref _description, value);
+        }
+        public string Location
+        {
+            get => _location;
+            set => Set(ref _location, value);
+        }
+        public ObservableCollection<IAnimalClass> AllAnimal
+        {
+            get => _allAnimal;
+            set => Set(ref _allAnimal, value);
         }
         public Array Classes { get; }
         public Array TypeFiles { get; }
         public EnumAnimal _class;
         private EnumTypeFile _typeFile;
-        public EnumTypeFile TypeFile 
+        public EnumTypeFile TypeFile
         {
             get => _typeFile;
             set => Set(ref _typeFile, value);
@@ -35,7 +50,8 @@ namespace PatternsLesson19.ViewModels
         public ICommand AddAnimal { get; }
         private void OnAddAnimal(object p)
         {
-            _animalClasses.Add(AnimalFactory.GetAnimal(Class, "", "", ""));
+            AllAnimal.Add(AnimalFactory.GetAnimal(Class, Name, Description, Location));
+            repository.SaveBase(AllAnimal);
         }
         private bool CanAddAnimal(object p)
         {
@@ -55,8 +71,8 @@ namespace PatternsLesson19.ViewModels
             IBaseSave baseSave = null;
             switch (TypeFile)
             {
-                case EnumTypeFile.Xml: 
-                    baseSave = new SaveXml();
+                case EnumTypeFile.Txt:
+                    baseSave = new SaveTxt();
                     break;
                 case EnumTypeFile.Json:
                     baseSave = new SaveJson();
@@ -64,9 +80,10 @@ namespace PatternsLesson19.ViewModels
                 default:
                     break;
             }
-            baseSave.Save(repository);
+            BaseSaver baseSaver = new(baseSave);
+            baseSaver.Save(repository);
         }
-       
+
         private bool CanSaveAll(object p)
         {
             if (TypeFile == null)
@@ -80,7 +97,12 @@ namespace PatternsLesson19.ViewModels
         }
         public MainWindowViewModel()
         {
+
             repository = new Repository();
+            foreach (var animal in repository.GetAllAnimal())
+            {
+                AllAnimal.Add(animal);
+            }
             Classes = Enum.GetValues(typeof(EnumAnimal));
             TypeFiles = Enum.GetValues(typeof(EnumTypeFile));
             AddAnimal = new RelayCommand(OnAddAnimal, CanAddAnimal);

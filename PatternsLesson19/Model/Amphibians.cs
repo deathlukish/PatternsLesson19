@@ -17,5 +17,9 @@ namespace PatternsLesson19.Model
             Description = desc;
             Location = loation;
         }
+        public override string ToString()
+        {
+            return $"{Name} {Description} {Location}";
+        }
     }
 }

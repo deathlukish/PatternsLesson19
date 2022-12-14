@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace PatternsLesson19.Model
 {
-    internal class SaveXml : IBaseSave
+    internal class BaseSaver
     {
+        IBaseSave baseSave;
+        public BaseSaver(IBaseSave baseSave)
+        {
+            this.baseSave = baseSave;
+        }
         public void Save(IRepository repository)
         {
-            throw new NotImplementedException();
+            baseSave.Save(repository);
         }
     }
 }

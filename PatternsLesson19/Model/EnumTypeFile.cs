@@ -8,7 +8,7 @@ namespace PatternsLesson19.Model
 {
     internal enum EnumTypeFile
     {
-        Xml = 0,
+        Txt = 0,
         Json = 1
     }
 }
